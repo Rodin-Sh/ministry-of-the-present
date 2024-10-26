@@ -7,8 +7,8 @@ load_dotenv()
 API_KEY = os.getenv("OPENAI_API_KEY")
 
 with st.sidebar:
-    openai_api_key = API_KEY
-    # openai_api_key = st.text_input("OpenAI API Key", type="password")
+    # openai_api_key = API_KEY
+    openai_api_key = st.text_input("OpenAI API Key", type="password")
 
 client = OpenAI(api_key=openai_api_key)
 
