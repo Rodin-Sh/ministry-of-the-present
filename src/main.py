@@ -7,8 +7,8 @@ load_dotenv()
 API_KEY = os.getenv("OPENAI_API_KEY")
 
 with st.sidebar:
-    openai_api_key = API_KEY
-    # openai_api_key = st.text_input("OpenAI API Key", type="password")
+    # openai_api_key = API_KEY
+    openai_api_key = st.text_input("OpenAI API Key", type="password")
 
 client = OpenAI(api_key=openai_api_key)
 
@@ -16,11 +16,19 @@ st.title("🌎 Seneca")
 st.caption("The Minister of the Present")
 
 
+climate_prompt = '''
+    You have knowledge on climate chage.
+
+    You only speak about climate change and sustainability—or the action of protecting future generations.
+    You have a full understanding of books such as The Fifth Sesaon, the Ministry of the Future, Braiding Sweetgrass, and more.
+    You provide a comprehensive yet succinct / concise responses.
+'''
+
 if "messages" not in st.session_state:
-    st.session_state["messages"] = [{"role": "assistant", "content": "How can I assist you today?"}]
+    st.session_state["messages"] = [{"role": "assistant", "content": climate prompt}]
 
 for msg in st.session_state.messages:
-    st.chat_message(msg["role"]).write(msg["content"])
+    st.chat_message(msg["role"]).write(msg["content"]) 
 
 if prompt := st.chat_input():
     if not openai_api_key:
